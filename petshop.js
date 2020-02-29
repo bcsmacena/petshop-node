@@ -8,4 +8,25 @@ let adicionarPet = nomePet => {
 
     return true;
 }
-module.exports = {adicionarPet}
+
+let listaPets = () => {
+    if (listaDePets.length){
+        return listaDePets;
+    } else {
+        return [""];
+    }
+}
+
+let buscaPet = nomePet => {
+
+    let petsEncontrados = listaDePets.filter( pet => pet == nomePet);
+
+    if(petsEncontrados.length){
+        return petsEncontrados;
+    } else {
+        return ["Pet não encontrado!"];
+    }
+    
+}
+
+module.exports = {adicionarPet, listaPets, buscaPet}
