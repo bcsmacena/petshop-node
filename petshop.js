@@ -2,22 +2,21 @@ let listaDePets = [];
 
 let adicionarPet = nomePet => {
     
-    listaDePets.push(nomePet)
-    
-    console.log(listaDePets);
-
+    listaDePets.push(nomePet);
     return true;
+
 }
 
-let listaPets = () => {
+let listarPets = () => {
+    
     if (listaDePets.length){
         return listaDePets;
     } else {
-        return [""];
+        return ["Não existem pets cadastrados!"];
     }
 }
 
-let buscaPet = nomePet => {
+let buscarPets = nomePet => {
 
     let petsEncontrados = listaDePets.filter( pet => pet == nomePet);
 
@@ -29,4 +28,4 @@ let buscaPet = nomePet => {
     
 }
 
-module.exports = {adicionarPet, listaPets, buscaPet}
+module.exports = {adicionarPet, listarPets, buscarPets}

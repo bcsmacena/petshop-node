@@ -2,16 +2,14 @@ const http = require('http');
 const url = require('url');
 const petshop = require('./petshop');
 
-
 let server = http.createServer((req,res) => {
     
     let urlCompleta = url.parse(req.url, true)
 
-    let httpCode200 = res.writeHead(200, {"Content-Type": "text/html"});
+    let httpCode200 = res.writeHead(200, {"Content-Type":"text/plain; charset=utf-8"});
     let httpCode401 = res.writeHead(401, {"Content-type":"text/plain; charset=utf-8"});
     let httpCode404 = res.writeHead(404, {"Content-type":"text/plain; charset=utf-8"});
 
-    let linha = '<br>'
     
     switch(urlCompleta.pathname){
         case "/":
@@ -33,17 +31,16 @@ let server = http.createServer((req,res) => {
             break;
         case "/pet/listar":
             httpCode200;
-            petshop.listaPets().forEach(element => {
+            petshop.listarPets().forEach(element => {
                    res.write(element + "\n");
             });
             break;
         case "/pet/buscar":
             httpCode200;
-            petshop.buscaPet(urlCompleta.query.nome).forEach(element => {
+            petshop.buscarPets(urlCompleta.query.nome).forEach(element => {
                 res.write(element + "\n");
          });
-            // httpCode200;
-            // res.write("Pagina de busca");
+
             break;
         default:
             httpCode404;
